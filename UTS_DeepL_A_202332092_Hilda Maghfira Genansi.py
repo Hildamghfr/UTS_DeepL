@@ -25,6 +25,7 @@ import os # Akan digunakan untuk memuat file gambar
 # Pastikan versi TensorFlow yang digunakan
 print("TensorFlow Version:", tf.__version__)
 
+#Pra-Pemrosesan Data MNIST
 (x_train_orig, y_train_orig), (x_test_orig, y_test_orig) = mnist.load_data()
 
 print(f"Bentuk data latih (x_train_orig): {x_train_orig.shape}")
@@ -59,6 +60,7 @@ print(f"Input shape: {input_shape}")
 print(f"Contoh label asli (y_train_orig[0]): {y_train_orig[0]}")
 print(f"Contoh label one-hot (y_train[0]): {y_train[0]}")
 
+# Visualisasi
 plt.figure(figsize=(12, 6))
 plt.suptitle("Contoh Citra dari Dataset MNIST (Setelah Pra-Pemrosesan)", fontsize=16)
 for i in range(10):  # Menampilkan 10 gambar pertama
@@ -72,6 +74,7 @@ for i in range(10):  # Menampilkan 10 gambar pertama
 plt.tight_layout(rect=[0, 0.03, 1, 0.95])
 plt.show()
 
+# Pembuatan Model A
 def create_model_A():
     model = Sequential()
 
@@ -257,6 +260,7 @@ x_test_rgb_B = tf.image.grayscale_to_rgb(x_test_resized_B)
 x_train_processed_B = resnet_preprocess(x_train_rgb_B)
 x_test_processed_B = resnet_preprocess(x_test_rgb_B)
 
+# Model B
 def create_model_B():
     base_model = ResNet50(
         input_shape=input_shape_B,
